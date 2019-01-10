@@ -1,5 +1,10 @@
 page-player {
+	overflow: hidden;
+
 	video{
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
 	}
@@ -9,11 +14,22 @@ page-player {
 		display: none !important;
 	}
 
+	#main{
+		z-index: 3;
+	}
+	#option0{
+		z-index: 1;
+	}
+	#option1{
+		z-index: 1;
+	}
+
 	#player-topbar{
 		position: absolute;
 		top: 0;
 		width: 100%;
 		padding: 15px;
+		z-index: 5;
 
 		.left{
 			float: left;
@@ -21,5 +37,21 @@ page-player {
 		.right{
 			float: right;
 		}
+	}
+
+	.player-options{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		padding: 5px 15px;
+		z-index: 5;
+		background-color: rgba(255,255,255,.5);
+		display: none;
+		-webkit-transition: all 2s ease-in-out;
+		transition: all 2s ease-in-out;
+	}
+
+	.player-options.isShowing{
+		display: block;
 	}
 }
