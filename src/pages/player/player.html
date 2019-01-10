@@ -1,0 +1,12 @@
+<ion-content>
+	<video id="main"><source type="video/mp4" controls></video>
+	<div id="player-topbar">
+		<div class="left">
+			<button ion-button round>Voltar</button>
+		</div>
+		<div class="right">
+			<button ion-button round *ngIf="!isPlaying" (tap)="play()">Play</button>
+			<button ion-button round *ngIf="isPlaying" (tap)="pause()">Pause</button>
+		</div>
+	</div>
+</ion-content>
