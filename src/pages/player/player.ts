@@ -18,11 +18,11 @@ export class PlayerPage
 	btnOption1 : any;
 	isShowingOptions: boolean = false;
 	isPlaying: boolean = false;
-	nextIndex: number = 0;
 	currentIndex: number = 0;
 	hasSelectedNext: boolean = false;
 	hasFinishedEpisode: boolean = false;
 	waitingTime: number = 5;
+	currentChoice: number = 0;
 
 	constructor( public navCtrl: NavController, public platform: Platform, public http: Http)
 	{
@@ -64,7 +64,7 @@ export class PlayerPage
 				}
 				that.hasFinishedEpisode = false;
 				console.log( 'Exibindo: ', that.config['scenes'][ that.currentIndex ]['title'] );
-				that.preloadNextOptions();
+				
 			};
 
 			this.video.ontimeupdate = function(r)
@@ -72,7 +72,11 @@ export class PlayerPage
 				// console.warn('Tempo: ' + this.currentTime + '/' + this.duration );
 				if( this.duration - this.currentTime < that.waitingTime && !that.config['scenes'][ that.currentIndex ]['isFinal']  )
 				{
-					that.showOptionsOnScreen();
+					if( !that.isShowingOptions )
+					{
+						that.preloadNextOptions();
+						that.showOptionsOnScreen();
+					}
 				}
 			};
 
@@ -88,20 +92,21 @@ export class PlayerPage
 				}
 				else
 				{
-					that.nextIndex = (that.nextIndex == 0) ? (1 + Math.round(Math.random() * 1)) : that.nextIndex;
-					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + that.nextIndex );
-					
-					that.video.setAttribute("src", that.config['scenes'][ that.config['scenes'][ that.currentIndex ]['options'][ that.nextIndex ]['goto'] ]['url']);
+					let nextIndex = 0;
+					let optionChoosed = (that.currentChoice == 0) ?  (Math.round(Math.random() * 1)) : that.currentChoice - 1;
+					nextIndex = that.config['scenes'][ that.currentIndex ]['options'][ optionChoosed ]['goto'];
+
+
+					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + nextIndex );					
+					that.video.setAttribute("src", that.config['scenes'][ nextIndex ]['url']);
 					that.video.play();
 
-
-
-					that.currentIndex = that.nextIndex;
+					that.currentIndex = nextIndex;
 
 					setTimeout( () =>
 					{
 						that.hideOptionsOnScreen();
-						that.nextIndex = 0;
+						that.currentChoice = 0;
 					}, 2000);
 
 
@@ -163,7 +168,7 @@ export class PlayerPage
 	goto( op )
 	{
 		console.log( op );
-		this.nextIndex = op;
+		this.currentChoice = op;
 		this.hasSelectedNext = true;		
 	}
 
