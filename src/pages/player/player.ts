@@ -88,13 +88,15 @@ export class PlayerPage
 					that.currentIndex = 0;
 					that.isPlaying = false;
 					that.video.pause();
-					that.hideOptionsOnScreen();
+					// that.hideOptionsOnScreen();
 				}
 				else
 				{
 					let nextIndex = 0;
-					let optionChoosed = (that.currentChoice == 0) ?  (Math.round(Math.random() * 1)) : that.currentChoice - 1;
-					nextIndex = that.config['scenes'][ that.currentIndex ]['options'][ optionChoosed ]['goto'];
+					that.currentChoice = (that.currentChoice == 0) ?  ( 1 +Math.round(Math.random() * 1)) : that.currentChoice;
+					that.hasSelectedNext = true;
+
+					nextIndex = that.config['scenes'][ that.currentIndex ]['options'][ that.currentChoice - 1 ]['goto'];
 
 
 					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + nextIndex );					

@@ -21,8 +21,8 @@
 		"url": "https://player.vimeo.com/external/306205121.hd.mp4?s=86130cf2d42d8333b9766b011c03162c2ce20aa1&profile_id=175&oauth2_token_id=57447761",
 		"isFinal": false,
 		"options": [{
-			"label": "Piano?",
-			"goto": 2
+			"label": "Rua?",
+			"goto": 4
 		},
 		{
 			"label": "Pedras?",
@@ -39,5 +39,19 @@
 		"title": "Parte 3 - Pedras",
 		"url": "https://r6---sn-ug5onuxaxjvh-n8vs.googlevideo.com/videoplayback?signature=0CE6AFF9E7931E3C617CED2FA1E0606EB664269D.1C995944F8C6A19F5D4FA4DA3837F7D1274BCBAE&mt=1547318844&pl=21&mv=m&ei=lDY6XJPjCZS2yQXjiIfIBw&ms=au%2Conr&mm=31%2C26&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cnh%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mn=sn-ug5onuxaxjvh-n8vs%2Csn-axq7sn76&key=yt6&source=youtube&dur=8.823&id=o-AI_OXcJdnjGCp8EP7WksKQ-c0wNTmvahK0yhIkktJRmT&lmt=1471471413566378&itag=22&requiressl=yes&ip=62.33.207.201&expire=1547340532&initcwndbps=710000&fvip=6&ratebypass=yes&ipbits=0&nh=%2CIgpwcjAyLmxlZDAzKgkxMjcuMC4wLjE&mime=video%2Fmp4&c=WEB&video_id=ZDj5GVt0ebQ&title=Lumia+930+4k+short+sample+video+-+Lumia+Denim+Update",
 		"isFinal": true
+	}, {
+		"id": 4,
+		"title": "Parte 4 - Rua",
+		"url": "https://r2---sn-p4vguxpq-jb3l.googlevideo.com/videoplayback?ipbits=0&ratebypass=yes&ip=202.51.126.10&source=youtube&mm=31%2C29&mn=sn-p4vguxpq-jb3l%2Csn-npoe7ne7&id=o-AJdjRmFZkVUXGZ32yXBfZDrPFnJtlRPwuAmUQbnnQTE2&ei=YUg6XPqdIoOqoAOqvozYDQ&ms=au%2Crdu&mt=1547323365&mv=m&pl=24&fvip=2&signature=CA1EB4F5783D3DA37BA6B84049EF573EE9CAD1DA.08382B368552DC30782B0B38B3A40F723F89015B&expire=1547345089&key=yt6&mime=video%2Fmp4&initcwndbps=112500&dur=22.384&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&c=WEB&requiressl=yes&itag=22&lmt=1476343786278893&video_id=9Hbv77NpKxE&title=Google+Pixel+Short+4K+Video+Test",
+		"isFinal": false,
+		"options": [{
+			"label": "Piano?",
+			"goto": 2
+		},
+		{
+			"label": "Pedras?",
+			"goto": 3
+		}
+	]
 	}]
 }
