@@ -22,6 +22,7 @@ export class PlayerPage
 	currentIndex: number = 0;
 	hasSelectedNext: boolean = false;
 	hasFinishedEpisode: boolean = false;
+	waitingTime: number = 5;
 
 	constructor( public navCtrl: NavController, public platform: Platform, public http: Http)
 	{
@@ -62,14 +63,14 @@ export class PlayerPage
 					that.video.play();
 				}
 				that.hasFinishedEpisode = false;
-				console.log( 'Iniciou video...' );
+				console.log( 'Exibindo: ', that.config['scenes'][ that.currentIndex ]['title'] );
 				that.preloadNextOptions();
 			};
 
 			this.video.ontimeupdate = function(r)
 			{
 				// console.warn('Tempo: ' + this.currentTime + '/' + this.duration );
-				if( this.duration - this.currentTime < 5 && !that.config['scenes'][ that.currentIndex ]['isFinal']  )
+				if( this.duration - this.currentTime < that.waitingTime && !that.config['scenes'][ that.currentIndex ]['isFinal']  )
 				{
 					that.showOptionsOnScreen();
 				}
@@ -90,8 +91,10 @@ export class PlayerPage
 					that.nextIndex = (that.nextIndex == 0) ? (1 + Math.round(Math.random() * 1)) : that.nextIndex;
 					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + that.nextIndex );
 					
-					that.video.setAttribute("src", that.config['scenes'][ that.nextIndex ]['url']);
+					that.video.setAttribute("src", that.config['scenes'][ that.config['scenes'][ that.currentIndex ]['options'][ that.nextIndex ]['goto'] ]['url']);
 					that.video.play();
+
+
 
 					that.currentIndex = that.nextIndex;
 
@@ -111,12 +114,15 @@ export class PlayerPage
 	preloadNextOptions()
 	{
 		console.log('Fazendo preload');
+		if( !this.config['scenes'][ this.currentIndex ]['isFinal'] )
+		{
+			this.btnOption0.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][0]['label'];
+			this.btnOption1.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][1]['label'];
 
-		this.btnOption0.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][0]['label'];
-		this.btnOption1.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][1]['label'];
+			this.option0.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url']);
+			this.option1.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url']);
 
-		this.option0.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url']);
-		this.option1.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url']);
+		}
 
 	}
 

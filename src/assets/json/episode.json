@@ -17,7 +17,7 @@
 	]
 	}, {
 		"id": 1,
-		"title": "Flores",
+		"title": "Parte 1 - Flores",
 		"url": "https://player.vimeo.com/external/306205121.hd.mp4?s=86130cf2d42d8333b9766b011c03162c2ce20aa1&profile_id=175&oauth2_token_id=57447761",
 		"isFinal": false,
 		"options": [{
@@ -31,12 +31,12 @@
 	]
 	}, {
 		"id": 2,
-		"title": "Neve",
+		"title": "Parte 2 - Neve",
 		"url": "https://player.vimeo.com/external/308531698.hd.mp4?s=2bc9fb5fca7b4ed429b945fdaa30fd80370cd4ee&profile_id=172&oauth2_token_id=57447761",
 		"isFinal": true
 	}, {
 		"id": 3,
-		"title": "Pedras",
+		"title": "Parte 3 - Pedras",
 		"url": "https://r6---sn-ug5onuxaxjvh-n8vs.googlevideo.com/videoplayback?signature=0CE6AFF9E7931E3C617CED2FA1E0606EB664269D.1C995944F8C6A19F5D4FA4DA3837F7D1274BCBAE&mt=1547318844&pl=21&mv=m&ei=lDY6XJPjCZS2yQXjiIfIBw&ms=au%2Conr&mm=31%2C26&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cnh%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mn=sn-ug5onuxaxjvh-n8vs%2Csn-axq7sn76&key=yt6&source=youtube&dur=8.823&id=o-AI_OXcJdnjGCp8EP7WksKQ-c0wNTmvahK0yhIkktJRmT&lmt=1471471413566378&itag=22&requiressl=yes&ip=62.33.207.201&expire=1547340532&initcwndbps=710000&fvip=6&ratebypass=yes&ipbits=0&nh=%2CIgpwcjAyLmxlZDAzKgkxMjcuMC4wLjE&mime=video%2Fmp4&c=WEB&video_id=ZDj5GVt0ebQ&title=Lumia+930+4k+short+sample+video+-+Lumia+Denim+Update",
 		"isFinal": true
 	}]
