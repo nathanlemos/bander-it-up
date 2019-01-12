@@ -19,6 +19,9 @@ export class PlayerPage
 	isShowingOptions: boolean = false;
 	isPlaying: boolean = false;
 	nextIndex: number = 0;
+	currentIndex: number = 0;
+	hasSelectedNext: boolean = false;
+	hasFinishedEpisode: boolean = false;
 
 	constructor( public navCtrl: NavController, public platform: Platform, public http: Http)
 	{
@@ -50,33 +53,56 @@ export class PlayerPage
 
 		if( this.video != undefined )
 		{
-			that.video.setAttribute("src", this.config['scenes'][0]['url']);
-			this.video.onplaying = function()
+			that.video.setAttribute("src", that.config['scenes'][ that.currentIndex ]['url']);
+			this.video.onplay = function()
 			{
+				if( that.hasFinishedEpisode )
+				{
+					that.video.setAttribute("src", that.config['scenes'][ that.currentIndex ]['url']);
+					that.video.play();
+				}
+				that.hasFinishedEpisode = false;
 				console.log( 'Iniciou video...' );
-
 				that.preloadNextOptions();
 			};
 
 			this.video.ontimeupdate = function(r)
 			{
-				if( this.duration - this.currentTime < 5  )
+				// console.warn('Tempo: ' + this.currentTime + '/' + this.duration );
+				if( this.duration - this.currentTime < 5 && !that.config['scenes'][ that.currentIndex ]['isFinal']  )
 				{
 					that.showOptionsOnScreen();
-				}
-
-				if( this.duration - this.currentTime < 0.5  )
-				{
-					that.video.setAttribute("src", that.config['scenes'][ that.nextIndex ]['url']);
-					that.video.play();
 				}
 			};
 
 			this.video.onended = function(e)
 			{
-				that.isPlaying = false;
-				that.video.pause();
-				that.hideOptionsOnScreen();
+				if( that.config['scenes'][ that.currentIndex ]['isFinal'] )
+				{
+					that.hasFinishedEpisode = true
+					that.currentIndex = 0;
+					that.isPlaying = false;
+					that.video.pause();
+					that.hideOptionsOnScreen();
+				}
+				else
+				{
+					that.nextIndex = (that.nextIndex == 0) ? (1 + Math.round(Math.random() * 1)) : that.nextIndex;
+					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + that.nextIndex );
+					
+					that.video.setAttribute("src", that.config['scenes'][ that.nextIndex ]['url']);
+					that.video.play();
+
+					that.currentIndex = that.nextIndex;
+
+					setTimeout( () =>
+					{
+						that.hideOptionsOnScreen();
+						that.nextIndex = 0;
+					}, 2000);
+
+
+				}
 			};
 		}
 		
@@ -85,11 +111,12 @@ export class PlayerPage
 	preloadNextOptions()
 	{
 		console.log('Fazendo preload');
-		this.btnOption0.innerHTML = this.config['scenes'][1]['title'];
-		this.btnOption1.innerHTML = this.config['scenes'][2]['title'];
 
-		this.option0.setAttribute("src", this.config['scenes'][1]['url']);
-		this.option1.setAttribute("src", this.config['scenes'][2]['url']);
+		this.btnOption0.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][0]['label'];
+		this.btnOption1.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][1]['label'];
+
+		this.option0.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url']);
+		this.option1.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url']);
 
 	}
 
@@ -104,6 +131,7 @@ export class PlayerPage
 
 	hideOptionsOnScreen()
 	{
+		this.hasSelectedNext = false;
 		console.log('Fechou options');
 		this.isShowingOptions = false;
 	}
@@ -130,6 +158,7 @@ export class PlayerPage
 	{
 		console.log( op );
 		this.nextIndex = op;
+		this.hasSelectedNext = true;		
 	}
 
 

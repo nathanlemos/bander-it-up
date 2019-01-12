@@ -1,7 +1,11 @@
 <ion-content>
-	<video id="main"><source type="video/mp4"></video>
-	<video id="option0"><source type="video/mp4"></video>
-	<video id="option1"><source type="video/mp4"></video>
+	<div id="player">		
+		<video id="main"><source type="video/mp4"></video>
+		<div id="preloaders">
+			<video id="option0"><source type="video/mp4"></video>
+			<video id="option1"><source type="video/mp4"></video>
+		</div>
+	</div>
 
 
 	<div id="player-topbar">
@@ -17,10 +21,10 @@
 		<ion-grid>
 		  <ion-row>
 		    <ion-col col-6>
-		     <button color="dark" ion-button round block outline id="btnOption0" (tap)="goto(1)">Opção 1</button>
+		     <button color="white" ion-button round block clear [class.op-active]="hasSelectedNext && nextIndex == 1" [disabled]="hasSelectedNext" id="btnOption0" (tap)="goto(1)">Opção 1</button>
 		    </ion-col>
 		    <ion-col col-6>
-		     <button color="dark" ion-button round block outline id="btnOption1" (tap)="goto(2)">Opção 2</button>
+		     <button color="white" ion-button round block clear [class.op-active]="hasSelectedNext && nextIndex == 2" [disabled]="hasSelectedNext" id="btnOption1" (tap)="goto(2)">Opção 2</button>
 		 </ion-col>
 		  </ion-row>
 		</ion-grid>
