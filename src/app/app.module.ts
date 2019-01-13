@@ -9,6 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PlayerPage } from '../pages/player/player';
 
+import { UiProvider } from '../providers/ui/ui';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,6 +30,7 @@ import { PlayerPage } from '../pages/player/player';
   ],
   providers: [
     StatusBar,
+    UiProvider,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { UiProvider } from '../../providers/ui/ui';
+
+
 @Component({
 	selector: 'page-player',
 	templateUrl: 'player.html',
@@ -11,11 +14,6 @@ export class PlayerPage
 {
 	config : any;
 	episode : string;
-	video : any;
-	option0 : any;
-	option1 : any;
-	btnOption0 : any;
-	btnOption1 : any;
 	isShowingOptions: boolean = false;
 	isPlaying: boolean = false;
 	currentIndex: number = 0;
@@ -24,16 +22,11 @@ export class PlayerPage
 	waitingTime: number = 5;
 	currentChoice: number = 0;
 
-	constructor( public navCtrl: NavController, public platform: Platform, public http: Http)
+	constructor( public navCtrl: NavController, public platform: Platform, public http: Http, public ui: UiProvider)
 	{
 		this.platform.ready().then( (r) =>
 		{
 			this.episode = 'episode';
-			this.video = document.getElementById('main');
-			this.option0 = document.getElementById('option0');
-			this.option1 = document.getElementById('option1');
-			this.btnOption0 = document.getElementById('btnOption0');
-			this.btnOption1 = document.getElementById('btnOption1');
 
 			this.http.get('../../../assets/json/' +this.episode+ '.json').map(res => res.json()).subscribe( (res) =>
 			{
@@ -51,44 +44,44 @@ export class PlayerPage
 	setVideo()
 	{
 		let that = this;
-
-		if( this.video != undefined )
-		{
-			that.video.setAttribute("src", that.config['scenes'][ that.currentIndex ]['url']);
-			this.video.onplay = function()
+		this.ui.init( this.config['scenes'][ this.currentIndex ]['url'], 
+			// On play
+			function()
 			{
 				if( that.hasFinishedEpisode )
 				{
-					that.video.setAttribute("src", that.config['scenes'][ that.currentIndex ]['url']);
-					that.video.play();
+					that.ui.setMainVideo(that.config['scenes'][ that.currentIndex ]['url'], true);
 				}
 				that.hasFinishedEpisode = false;
 				console.log( 'Exibindo: ', that.config['scenes'][ that.currentIndex ]['title'] );
 				
-			};
-
-			this.video.ontimeupdate = function(r)
+			}, 
+			// On time updated
+			function(r)
 			{
 				// console.warn('Tempo: ' + this.currentTime + '/' + this.duration );
 				if( this.duration - this.currentTime < that.waitingTime && !that.config['scenes'][ that.currentIndex ]['isFinal']  )
 				{
+					let loadTime = 100 - (100 * ((that.waitingTime - ( this.duration - this.currentTime )) / that.waitingTime));
+
+					that.ui.setWaitingTime( loadTime );
+
 					if( !that.isShowingOptions )
 					{
 						that.preloadNextOptions();
 						that.showOptionsOnScreen();
 					}
 				}
-			};
-
-			this.video.onended = function(e)
+			},
+			// On ended
+			function(e)
 			{
 				if( that.config['scenes'][ that.currentIndex ]['isFinal'] )
 				{
 					that.hasFinishedEpisode = true
 					that.currentIndex = 0;
 					that.isPlaying = false;
-					that.video.pause();
-					// that.hideOptionsOnScreen();
+					that.ui.pauseMainVideo();
 				}
 				else
 				{
@@ -99,9 +92,8 @@ export class PlayerPage
 					nextIndex = that.config['scenes'][ that.currentIndex ]['options'][ that.currentChoice - 1 ]['goto'];
 
 
-					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + nextIndex );					
-					that.video.setAttribute("src", that.config['scenes'][ nextIndex ]['url']);
-					that.video.play();
+					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + nextIndex );
+					that.ui.setMainVideo(that.config['scenes'][ nextIndex ]['url'], true);
 
 					that.currentIndex = nextIndex;
 
@@ -113,9 +105,7 @@ export class PlayerPage
 
 
 				}
-			};
-		}
-		
+			}  );
 	}
 
 	preloadNextOptions()
@@ -123,12 +113,8 @@ export class PlayerPage
 		console.log('Fazendo preload');
 		if( !this.config['scenes'][ this.currentIndex ]['isFinal'] )
 		{
-			this.btnOption0.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][0]['label'];
-			this.btnOption1.innerHTML = this.config['scenes'][ this.currentIndex ]['options'][1]['label'];
-
-			this.option0.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url']);
-			this.option1.setAttribute("src", this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url']);
-
+			this.ui.setOption( 0, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][0]['label'] );
+			this.ui.setOption( 1, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][1]['label'] );
 		}
 
 	}
@@ -151,19 +137,19 @@ export class PlayerPage
 
 	play()
 	{
-		if( this.video != undefined && !this.isPlaying )
+		if( this.ui.hasMainVideo() && !this.isPlaying )
 		{
 			this.isPlaying = true;
-			this.video.play();
+			this.ui.playMainVideo();
 		}
 	}
 
 	pause()
 	{
-		if( this.video != undefined && this.isPlaying )
+		if( this.ui.hasMainVideo() && this.isPlaying )
 		{
 			this.isPlaying = false;
-			this.video.pause();
+			this.ui.pauseMainVideo();
 		}
 	}
 
@@ -173,6 +159,4 @@ export class PlayerPage
 		this.currentChoice = op;
 		this.hasSelectedNext = true;		
 	}
-
-
 }

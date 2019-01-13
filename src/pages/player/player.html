@@ -18,15 +18,20 @@
 		</div>
 	</div>
 	<div class="player-options" [class.isShowing]="isShowingOptions">
-		<ion-grid>
-		  <ion-row>
-		    <ion-col col-6>
-		     <button color="white" ion-button round block clear [class.op-active]="hasSelectedNext && currentChoice == 1" [disabled]="hasSelectedNext" id="btnOption0" (tap)="goto(1)">Opção 1</button>
-		    </ion-col>
-		    <ion-col col-6>
-		     <button color="white" ion-button round block clear [class.op-active]="hasSelectedNext && currentChoice == 2" [disabled]="hasSelectedNext" id="btnOption1" (tap)="goto(2)">Opção 2</button>
-		 </ion-col>
-		  </ion-row>
-		</ion-grid>
+		<div class="player-options-content">
+			<ion-grid>
+			  <ion-row>
+			    <ion-col col-6>
+			     <button color="white" ion-button round block clear [class.op-active]="hasSelectedNext && currentChoice == 1" [disabled]="hasSelectedNext" id="btnOption0" (tap)="goto(1)">Opção 1</button>
+			    </ion-col>
+			    <ion-col col-6>
+			     <button color="white" ion-button round block clear [class.op-active]="hasSelectedNext && currentChoice == 2" [disabled]="hasSelectedNext" id="btnOption1" (tap)="goto(2)">Opção 2</button>
+			 </ion-col>
+			  </ion-row>
+			</ion-grid>
+		</div>
+		<div class="player-options-loader">
+			<div id="player-options-loader-bar"></div>
+		</div>
 	</div>
 </ion-content>

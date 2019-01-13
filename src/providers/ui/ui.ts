@@ -3,62 +3,64 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UiProvider
 {
-	episode : string;
-	video : any;
-	option0 : any;
-	option1 : any;
-	btnOption0 : any;
-	btnOption1 : any;
+	players : any = [];
+	btnOptions : any = [];
 
 	constructor()
 	{}
 
-	init( that )
+	init( src, fnOnPlay, fnOnTimeUpdate, fnOnEnded)
 	{
-		this.video = document.getElementById('main');
-		this.option0 = document.getElementById('option0');
-		this.option1 = document.getElementById('option1');
-		this.btnOption0 = document.getElementById('btnOption0');
-		this.btnOption1 = document.getElementById('btnOption1');
+		// Video Principal
+		this.players[2] = document.getElementById('main');
+		
+		// Preloaders
+		this.players[0] = document.getElementById('option0');
+		this.players[1] = document.getElementById('option1');
+		
+		// Option buttons
+		this.btnOptions[0] = document.getElementById('btnOption0');
+		this.btnOptions[1] = document.getElementById('btnOption1');
 
-		this.setVideo( that );
+		this.players[2].setAttribute("src", src);
+		this.players[2].onplay = fnOnPlay;
+		this.players[2].ontimeupdate = fnOnTimeUpdate;
+		this.players[2].onended = fnOnEnded;
 	}
 
-
-	setVideo( that )
+	setWaitingTime( time )
 	{
-		if( this.video != undefined )
+		document.getElementById('player-options-loader-bar').style.width = time + '%';
+	}
+
+	setOption( player, src, text )
+	{
+		this.btnOptions[ player ].innerHTML = text;
+		this.btnOptions[ player ].setAttribute("src", src);
+	}
+
+	hasMainVideo()
+	{
+		return this.players[2] != undefined;
+	}
+
+	setMainVideo(src, willPlay)
+	{
+		this.players[2].setAttribute("src", src);
+		if( willPlay)
 		{
-			this.video.setAttribute("src", that.config['scenes'][0]['url']);
-			this.video.onplaying = function()
-			{
-				console.log( 'Iniciou video...' );
-
-				that.preloadNextOptions();
-			};
-
-			this.video.ontimeupdate = function(r)
-			{
-				if( this.duration - this.currentTime < 5  )
-				{
-					that.showOptionsOnScreen();
-				}
-
-				if( this.duration - this.currentTime < 0.5  )
-				{
-					that.video.setAttribute("src", that.config['scenes'][ that.nextIndex ]['url']);
-					that.video.play();
-				}
-			};
-
-			this.video.onended = function(e)
-			{
-				that.isPlaying = false;
-				that.video.pause();
-				that.hideOptionsOnScreen();
-			};
+			this.playMainVideo();
 		}
-		
+	}
+
+	playMainVideo()
+	{
+		this.players[2].play();
+	}
+
+	pauseMainVideo()
+	{
+		this.players[2].pause();
 	}
 
 }

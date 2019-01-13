@@ -11,7 +11,7 @@
 			"goto": 1
 		},
 		{
-			"label": "Pedras?",
+			"label": "Cidade?",
 			"goto": 3
 		}
 	]
@@ -25,7 +25,7 @@
 			"goto": 4
 		},
 		{
-			"label": "Pedras?",
+			"label": "Cidade?",
 			"goto": 3
 		}
 	]
@@ -36,8 +36,8 @@
 		"isFinal": true
 	}, {
 		"id": 3,
-		"title": "Parte 3 - Pedras",
-		"url": "https://r6---sn-ug5onuxaxjvh-n8vs.googlevideo.com/videoplayback?signature=0CE6AFF9E7931E3C617CED2FA1E0606EB664269D.1C995944F8C6A19F5D4FA4DA3837F7D1274BCBAE&mt=1547318844&pl=21&mv=m&ei=lDY6XJPjCZS2yQXjiIfIBw&ms=au%2Conr&mm=31%2C26&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cnh%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mn=sn-ug5onuxaxjvh-n8vs%2Csn-axq7sn76&key=yt6&source=youtube&dur=8.823&id=o-AI_OXcJdnjGCp8EP7WksKQ-c0wNTmvahK0yhIkktJRmT&lmt=1471471413566378&itag=22&requiressl=yes&ip=62.33.207.201&expire=1547340532&initcwndbps=710000&fvip=6&ratebypass=yes&ipbits=0&nh=%2CIgpwcjAyLmxlZDAzKgkxMjcuMC4wLjE&mime=video%2Fmp4&c=WEB&video_id=ZDj5GVt0ebQ&title=Lumia+930+4k+short+sample+video+-+Lumia+Denim+Update",
+		"title": "Parte 3 - Cidade",
+		"url": "https://r5---sn-uvuppb-c33s.googlevideo.com/videoplayback?pl=24&itag=22&dur=24.171&mn=sn-uvuppb-c33s%2Csn-uvu-c336&mm=31%2C29&ip=118.175.93.105&ratebypass=yes&id=o-AD_Z9vJTP9mYtBPrw_h3ce7FdrlW7g716xILV_mwx3Ci&signature=2832C2788ED927C94FE31A3FEBDD6BF87CDA8C.81C6CB1A3F6EA81FC60857AEF44220BF004D1E86&ms=au%2Crdu&fvip=6&mv=m&mt=1547341731&expire=1547363445&ipbits=0&lmt=1476523337703404&key=yt6&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mime=video%2Fmp4&requiressl=yes&c=WEB&ei=FJA6XPmQKYOm1Aas2LHQCA&initcwndbps=726250&source=youtube&video_id=JKuOJLeT-50&title=Nikon+D3400+1080-60p+sample+video+clip",
 		"isFinal": true
 	}, {
 		"id": 4,
@@ -49,7 +49,7 @@
 			"goto": 2
 		},
 		{
-			"label": "Pedras?",
+			"label": "Cidade?",
 			"goto": 3
 		}
 	]
