@@ -9,16 +9,12 @@ page-player {
 		height: 100%;
 	}
 
-	#preloaders video{
-		opacity: 0;
-	}
-
 	video::-webkit-media-controls-fullscreen-button
 	{
 		display: none !important;
 	}
 
-	#main{
+	#option2{
 		z-index: 3;
 	}
 	#option0{
@@ -27,6 +23,28 @@ page-player {
 	#option1{
 		z-index: 1;
 	}
+
+	/* Debug styles - Init */
+	#preloaders video{
+		opacity: 1 ;
+	}
+
+	#option2{
+		width: 200px;
+	}
+	#option0{
+		width: 200px;
+		left: 200px;
+		background: red;
+	}
+	#option1{
+		width: 200px;
+		left: 400px;
+		background: blue;
+	}
+
+
+	/* Debug styles - End */
 
 	#player-topbar{
 		position: absolute;

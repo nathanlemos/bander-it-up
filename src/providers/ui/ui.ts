@@ -5,27 +5,52 @@ export class UiProvider
 {
 	players : any = [];
 	btnOptions : any = [];
+	curretScreen: number = 2;
+	fn: any =
+	{
+		onPlay : null,
+		onTimeUpdate : null,
+		onEnded : null,
+	}
 
 	constructor()
 	{}
 
 	init( src, fnOnPlay, fnOnTimeUpdate, fnOnEnded)
 	{
-		// Video Principal
-		this.players[2] = document.getElementById('main');
-		
 		// Preloaders
 		this.players[0] = document.getElementById('option0');
 		this.players[1] = document.getElementById('option1');
-		
+
+		// Video Principal
+		this.players[2] = document.getElementById('option2');
+
 		// Option buttons
 		this.btnOptions[0] = document.getElementById('btnOption0');
 		this.btnOptions[1] = document.getElementById('btnOption1');
 
 		this.players[2].setAttribute("src", src);
-		this.players[2].onplay = fnOnPlay;
-		this.players[2].ontimeupdate = fnOnTimeUpdate;
-		this.players[2].onended = fnOnEnded;
+		this.fn =
+		{
+			onPlay : fnOnPlay,
+			onTimeUpdate : fnOnTimeUpdate,
+			onEnded : fnOnEnded,
+		}
+
+		this.configScreen();
+	}
+
+	configScreen()
+	{
+		this.players[this.curretScreen].onplay = this.fn['onPlay'];
+		this.players[this.curretScreen].ontimeupdate = this.fn['onTimeUpdate'];
+		this.players[this.curretScreen].onended = this.fn['onEnded'];
+
+	}
+
+	getCurrentScreen()
+	{
+		return this.curretScreen;
 	}
 
 	setWaitingTime( time )
@@ -35,8 +60,9 @@ export class UiProvider
 
 	setOption( player, src, text )
 	{
+		console.log( 'Carregando', text  );
 		this.btnOptions[ player ].innerHTML = text;
-		this.btnOptions[ player ].setAttribute("src", src);
+		this.players[ player ].setAttribute("src", src);
 	}
 
 	hasMainVideo()

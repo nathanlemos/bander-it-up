@@ -36,7 +36,7 @@ export class PlayerPage
 			err =>
 			{
 				console.log( 'nOk', err );
-			});	
+			});
 
 		});
 	}
@@ -48,6 +48,7 @@ export class PlayerPage
 			// On play
 			function()
 			{
+				that.preloadNextOptions();
 				if( that.hasFinishedEpisode )
 				{
 					that.ui.setMainVideo(that.config['scenes'][ that.currentIndex ]['url'], true);
@@ -68,7 +69,7 @@ export class PlayerPage
 
 					if( !that.isShowingOptions )
 					{
-						that.preloadNextOptions();
+						// that.preloadNextOptions(); // TODO - Check if is better here or on play
 						that.showOptionsOnScreen();
 					}
 				}

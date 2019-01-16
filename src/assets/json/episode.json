@@ -32,17 +32,17 @@
 	}, {
 		"id": 2,
 		"title": "Parte 2 - Piano",
-		"url": "https://r4---sn-2gb7sn7r.googlevideo.com/videoplayback?fvip=4&initcwndbps=742500&itag=22&lmt=1472042971878571&ipbits=0&c=WEB&ei=FUE6XOb_NsOC1gLLrI7QAw&id=o-AGxhfcaRe0JjMu3wONh-MKAuk6yg2vQqCK6ZTu5v3-2R&ms=au%2Conr&mt=1547321490&mv=m&dur=29.373&mm=31%2C26&expire=1547343222&source=youtube&pl=22&requiressl=yes&key=yt6&ip=158.255.23.146&ratebypass=yes&mime=video%2Fmp4&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&signature=7754A9196D549442779DD0AFFFBF51DC96F6922F.C8B254FE302B231D2D4EEA5C0061CE98278E8109&mn=sn-2gb7sn7r%2Csn-4g5e6nsk&video_id=0bqMuEc2rnU&title=Canon+EOS+500D+-+HD+720p+Movie+-+Short+Sample+Video",
+		"url": "https://player.vimeo.com/external/207982079.hd.mp4?s=e02f547883decf1a4c937ee8896abb336fb3e84d&profile_id=172&oauth2_token_id=57447761",
 		"isFinal": true
 	}, {
 		"id": 3,
 		"title": "Parte 3 - Cidade",
-		"url": "https://r5---sn-uvuppb-c33s.googlevideo.com/videoplayback?pl=24&itag=22&dur=24.171&mn=sn-uvuppb-c33s%2Csn-uvu-c336&mm=31%2C29&ip=118.175.93.105&ratebypass=yes&id=o-AD_Z9vJTP9mYtBPrw_h3ce7FdrlW7g716xILV_mwx3Ci&signature=2832C2788ED927C94FE31A3FEBDD6BF87CDA8C.81C6CB1A3F6EA81FC60857AEF44220BF004D1E86&ms=au%2Crdu&fvip=6&mv=m&mt=1547341731&expire=1547363445&ipbits=0&lmt=1476523337703404&key=yt6&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mime=video%2Fmp4&requiressl=yes&c=WEB&ei=FJA6XPmQKYOm1Aas2LHQCA&initcwndbps=726250&source=youtube&video_id=JKuOJLeT-50&title=Nikon+D3400+1080-60p+sample+video+clip",
+		"url": "https://player.vimeo.com/external/293373387.hd.mp4?s=8713dc1cfb36186dbab502e02e2d2a1318c67f8e&profile_id=172&oauth2_token_id=57447761",
 		"isFinal": true
 	}, {
 		"id": 4,
 		"title": "Parte 4 - Rua",
-		"url": "https://r2---sn-p4vguxpq-jb3l.googlevideo.com/videoplayback?ipbits=0&ratebypass=yes&ip=202.51.126.10&source=youtube&mm=31%2C29&mn=sn-p4vguxpq-jb3l%2Csn-npoe7ne7&id=o-AJdjRmFZkVUXGZ32yXBfZDrPFnJtlRPwuAmUQbnnQTE2&ei=YUg6XPqdIoOqoAOqvozYDQ&ms=au%2Crdu&mt=1547323365&mv=m&pl=24&fvip=2&signature=CA1EB4F5783D3DA37BA6B84049EF573EE9CAD1DA.08382B368552DC30782B0B38B3A40F723F89015B&expire=1547345089&key=yt6&mime=video%2Fmp4&initcwndbps=112500&dur=22.384&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&c=WEB&requiressl=yes&itag=22&lmt=1476343786278893&video_id=9Hbv77NpKxE&title=Google+Pixel+Short+4K+Video+Test",
+		"url": "https://player.vimeo.com/external/210753513.hd.mp4?s=2012c5def3e484062e6a519381d634bbd75ff818&profile_id=119&oauth2_token_id=57447761",
 		"isFinal": false,
 		"options": [{
 			"label": "Piano?",
