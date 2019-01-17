@@ -48,6 +48,11 @@ export class UiProvider
 
 	}
 
+	setCurrentScreen( screen )
+	{
+		this.curretScreen = screen;
+	}
+
 	getCurrentScreen()
 	{
 		return this.curretScreen;

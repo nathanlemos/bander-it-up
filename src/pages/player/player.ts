@@ -48,6 +48,7 @@ export class PlayerPage
 			// On play
 			function()
 			{
+				console.log( 'Tela Atual: ', that.ui.getCurrentScreen() );
 				that.preloadNextOptions();
 				if( that.hasFinishedEpisode )
 				{
