@@ -21,6 +21,7 @@ export class PlayerPage
 	hasFinishedEpisode: boolean = false;
 	waitingTime: number = 5;
 	currentChoice: number = 0;
+	screenOptionsSetup: any = [];
 
 	constructor( public navCtrl: NavController, public platform: Platform, public http: Http, public ui: UiProvider)
 	{
@@ -44,20 +45,17 @@ export class PlayerPage
 	setVideo()
 	{
 		let that = this;
-		this.ui.init( this.config['scenes'][ this.currentIndex ]['url'], 
+		this.ui.init( this.config['scenes'][ this.currentIndex ]['url'],
 			// On play
 			function()
 			{
-				console.log( 'Tela Atual: ', that.ui.getCurrentScreen() );
-				that.preloadNextOptions();
-				if( that.hasFinishedEpisode )
-				{
-					that.ui.setMainVideo(that.config['scenes'][ that.currentIndex ]['url'], true);
-				}
+				// that.preloadNextOptions();
+				// if( that.hasFinishedEpisode )
+				// {
+				// 	that.ui.setMainVideo(that.config['scenes'][ that.currentIndex ]['url'], true);
+				// }
 				that.hasFinishedEpisode = false;
-				console.log( 'Exibindo: ', that.config['scenes'][ that.currentIndex ]['title'] );
-				
-			}, 
+			},
 			// On time updated
 			function(r)
 			{
@@ -70,7 +68,7 @@ export class PlayerPage
 
 					if( !that.isShowingOptions )
 					{
-						// that.preloadNextOptions(); // TODO - Check if is better here or on play
+						that.preloadNextOptions(); // TODO - Check if is better here or on play
 						that.showOptionsOnScreen();
 					}
 				}
@@ -93,9 +91,11 @@ export class PlayerPage
 
 					nextIndex = that.config['scenes'][ that.currentIndex ]['options'][ that.currentChoice - 1 ]['goto'];
 
+					console.log( 'Iria dar play na opcao', nextIndex, 'Que esta na tela', that.screenOptionsSetup[ nextIndex ] );
+					that.ui.setCurrentScreen( that.screenOptionsSetup[ nextIndex ] );
+					that.ui.playMainVideo();
 
-					console.log( 'Acabou parte atual: ' + that.currentIndex + ' Indo para: ' + nextIndex );
-					that.ui.setMainVideo(that.config['scenes'][ nextIndex ]['url'], true);
+					// that.ui.setMainVideo(that.config['scenes'][ nextIndex ]['url'], true);
 
 					that.currentIndex = nextIndex;
 
@@ -112,11 +112,23 @@ export class PlayerPage
 
 	preloadNextOptions()
 	{
-		console.log('Fazendo preload');
 		if( !this.config['scenes'][ this.currentIndex ]['isFinal'] )
 		{
-			this.ui.setOption( 0, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][0]['label'] );
-			this.ui.setOption( 1, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][1]['label'] );
+			let iOption = 0;
+			for( let iScreen = 0; iScreen < 3; iScreen++ )
+			{
+				if( iScreen != this.ui.getCurrentScreen() )
+				{
+					console.log( 'Opcao: ', iOption, ' carregada na tela ', iScreen );
+					this.screenOptionsSetup[ iOption ] = iScreen;
+					this.ui.setOption( iScreen, iOption, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][iOption]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][iOption]['label'] );
+					iOption++;
+				}
+
+			}
+
+			// this.ui.setOption( 0, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][0]['label'] );
+			// this.ui.setOption( 1, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][1]['label'] );
 		}
 
 	}
@@ -125,7 +137,6 @@ export class PlayerPage
 	{
 		if( !this.isShowingOptions )
 		{
-			console.log( 'Mostra tela' );
 			this.isShowingOptions = true;
 		}
 	}
@@ -133,7 +144,6 @@ export class PlayerPage
 	hideOptionsOnScreen()
 	{
 		this.hasSelectedNext = false;
-		console.log('Fechou options');
 		this.isShowingOptions = false;
 	}
 
@@ -157,8 +167,7 @@ export class PlayerPage
 
 	goto( op )
 	{
-		console.log( op );
 		this.currentChoice = op;
-		this.hasSelectedNext = true;		
+		this.hasSelectedNext = true;
 	}
 }

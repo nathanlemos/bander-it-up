@@ -29,7 +29,7 @@ export class UiProvider
 		this.btnOptions[0] = document.getElementById('btnOption0');
 		this.btnOptions[1] = document.getElementById('btnOption1');
 
-		this.players[2].setAttribute("src", src);
+		this.players[ this.curretScreen ].setAttribute("src", src);
 		this.fn =
 		{
 			onPlay : fnOnPlay,
@@ -63,11 +63,10 @@ export class UiProvider
 		document.getElementById('player-options-loader-bar').style.width = time + '%';
 	}
 
-	setOption( player, src, text )
+	setOption( screen, player, src, text )
 	{
-		console.log( 'Carregando', text  );
 		this.btnOptions[ player ].innerHTML = text;
-		this.players[ player ].setAttribute("src", src);
+		this.players[ screen ].setAttribute("src", src);
 	}
 
 	hasMainVideo()
@@ -77,7 +76,7 @@ export class UiProvider
 
 	setMainVideo(src, willPlay)
 	{
-		this.players[2].setAttribute("src", src);
+		this.players[ this.curretScreen ].setAttribute("src", src);
 		if( willPlay)
 		{
 			this.playMainVideo();
@@ -86,12 +85,12 @@ export class UiProvider
 
 	playMainVideo()
 	{
-		this.players[2].play();
+		this.players[this.curretScreen].play();
 	}
 
 	pauseMainVideo()
 	{
-		this.players[2].pause();
+		this.players[this.curretScreen].pause();
 	}
 
 }
