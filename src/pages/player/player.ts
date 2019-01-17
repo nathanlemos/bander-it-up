@@ -179,7 +179,6 @@ export class PlayerPage
 		this.isShowingTopBar = true;
 		setTimeout( () =>
 		{
-			console.log( 'Remove top bar' );
 			this.isShowingTopBar = false;
 		}, 3000);
 	}
