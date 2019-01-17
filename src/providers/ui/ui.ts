@@ -79,16 +79,16 @@ export class UiProvider
 		this.players[ this.curretScreen ].setAttribute("src", src);
 		if( willPlay)
 		{
-			this.playMainVideo();
+			this.play();
 		}
 	}
 
-	playMainVideo()
+	play()
 	{
 		this.players[this.curretScreen].play();
 	}
 
-	pauseMainVideo()
+	pause()
 	{
 		this.players[this.curretScreen].pause();
 	}

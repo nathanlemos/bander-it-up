@@ -12,6 +12,7 @@ import { UiProvider } from '../../providers/ui/ui';
 })
 export class PlayerPage
 {
+	isDebugging: boolean = false;
 	config : any;
 	episode : string;
 	isShowingOptions: boolean = false;
@@ -19,7 +20,7 @@ export class PlayerPage
 	currentIndex: number = 0;
 	hasSelectedNext: boolean = false;
 	hasFinishedEpisode: boolean = false;
-	waitingTime: number = 5;
+	waitingTime: number = 10;
 	currentChoice: number = 0;
 	screenOptionsSetup: any = [];
 
@@ -49,17 +50,19 @@ export class PlayerPage
 			// On play
 			function()
 			{
-				// that.preloadNextOptions();
-				// if( that.hasFinishedEpisode )
-				// {
-				// 	that.ui.setMainVideo(that.config['scenes'][ that.currentIndex ]['url'], true);
-				// }
+				if( that.hasFinishedEpisode )
+				{
+					that.ui.setMainVideo(that.config['scenes'][ that.currentIndex ]['url'], true);
+				}
 				that.hasFinishedEpisode = false;
 			},
 			// On time updated
 			function(r)
 			{
-				// console.warn('Tempo: ' + this.currentTime + '/' + this.duration );
+				if(this.isDebugging)
+				{
+					console.warn('Time: ' + this.currentTime + '/' + this.duration );
+				}
 				if( this.duration - this.currentTime < that.waitingTime && !that.config['scenes'][ that.currentIndex ]['isFinal']  )
 				{
 					let loadTime = 100 - (100 * ((that.waitingTime - ( this.duration - this.currentTime )) / that.waitingTime));
@@ -68,7 +71,7 @@ export class PlayerPage
 
 					if( !that.isShowingOptions )
 					{
-						that.preloadNextOptions(); // TODO - Check if is better here or on play
+						that.preloadNextOptions();
 						that.showOptionsOnScreen();
 					}
 				}
@@ -81,7 +84,7 @@ export class PlayerPage
 					that.hasFinishedEpisode = true
 					that.currentIndex = 0;
 					that.isPlaying = false;
-					that.ui.pauseMainVideo();
+					that.ui.pause();
 				}
 				else
 				{
@@ -91,11 +94,9 @@ export class PlayerPage
 
 					nextIndex = that.config['scenes'][ that.currentIndex ]['options'][ that.currentChoice - 1 ]['goto'];
 
-					console.log( 'Iria dar play na opcao', nextIndex, 'Que esta na tela', that.screenOptionsSetup[ nextIndex ] );
-					that.ui.setCurrentScreen( that.screenOptionsSetup[ nextIndex ] );
-					that.ui.playMainVideo();
-
-					// that.ui.setMainVideo(that.config['scenes'][ nextIndex ]['url'], true);
+					that.ui.setCurrentScreen( that.screenOptionsSetup[ that.currentChoice - 1 ] );
+					that.ui.play();
+					that.ui.configScreen();
 
 					that.currentIndex = nextIndex;
 
@@ -119,18 +120,13 @@ export class PlayerPage
 			{
 				if( iScreen != this.ui.getCurrentScreen() )
 				{
-					console.log( 'Opcao: ', iOption, ' carregada na tela ', iScreen );
 					this.screenOptionsSetup[ iOption ] = iScreen;
 					this.ui.setOption( iScreen, iOption, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][iOption]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][iOption]['label'] );
 					iOption++;
 				}
 
 			}
-
-			// this.ui.setOption( 0, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][0]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][0]['label'] );
-			// this.ui.setOption( 1, this.config['scenes'][ this.config['scenes'][ this.currentIndex ]['options'][1]['goto'] ]['url'], this.config['scenes'][ this.currentIndex ]['options'][1]['label'] );
 		}
-
 	}
 
 	showOptionsOnScreen()
@@ -152,7 +148,7 @@ export class PlayerPage
 		if( this.ui.hasMainVideo() && !this.isPlaying )
 		{
 			this.isPlaying = true;
-			this.ui.playMainVideo();
+			this.ui.play();
 		}
 	}
 
@@ -161,7 +157,7 @@ export class PlayerPage
 		if( this.ui.hasMainVideo() && this.isPlaying )
 		{
 			this.isPlaying = false;
-			this.ui.pauseMainVideo();
+			this.ui.pause();
 		}
 	}
 

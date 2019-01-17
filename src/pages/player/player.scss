@@ -25,26 +25,31 @@ page-player {
 	}
 
 	/* Debug styles - Init */
-	#preloaders video{
+	.debugmode #preloaders video{
 		opacity: 1 ;
 	}
 
-	#option2{
+	.debugmode #option2{
 		width: 33.3%;
 	}
-	#option0{
+	.debugmode #option0{
 		width: 33.3%;
 		left: 33.3%;
 		background: red;
 	}
-	#option1{
+	.debugmode #option1{
 		width: 33.3%;
 		left: 66.6%;
 		background: blue;
 	}
-
-
 	/* Debug styles - End */
+
+	.loading{
+		opacity: 0 !important;
+	}
+	.active{
+		opacity: 1 !important;
+	}
 
 	#player-topbar{
 		position: absolute;

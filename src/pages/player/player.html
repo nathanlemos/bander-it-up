@@ -1,8 +1,8 @@
 <ion-content>
-	<div id="player">
-		<video id="option2"></video>
-		<video id="option0"></video>
-		<video id="option1"></video>
+	<div id="player" [class.debugmode]="this.isDebugging">
+		<video id="option2" [class.active]="this.ui.getCurrentScreen() == 2" [class.loading]="this.ui.getCurrentScreen() != 2"></video>
+		<video id="option0" [class.active]="this.ui.getCurrentScreen() == 0" [class.loading]="this.ui.getCurrentScreen() != 0"></video>
+		<video id="option1" [class.active]="this.ui.getCurrentScreen() == 1" [class.loading]="this.ui.getCurrentScreen() != 1"></video>
 	</div>
 
 
