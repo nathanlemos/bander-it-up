@@ -1,14 +1,14 @@
 <ion-content>
-	<div id="player" [class.debugmode]="this.isDebugging">
+	<div id="player" [class.debugmode]="this.isDebugging" (tap)="showTopBar()" >
 		<video id="option2" [class.active]="this.ui.getCurrentScreen() == 2" [class.loading]="this.ui.getCurrentScreen() != 2"></video>
 		<video id="option0" [class.active]="this.ui.getCurrentScreen() == 0" [class.loading]="this.ui.getCurrentScreen() != 0"></video>
 		<video id="option1" [class.active]="this.ui.getCurrentScreen() == 1" [class.loading]="this.ui.getCurrentScreen() != 1"></video>
 	</div>
 
 
-	<div id="player-topbar">
+	<div id="player-topbar" *ngIf="this.isShowingTopBar">
 		<div class="left">
-			<button color="white" outline ion-button round><ion-icon name="ios-arrow-round-back"></ion-icon></button>
+			<button color="white" outline ion-button round icon-only (tap)="back()"><ion-icon name="ios-arrow-round-back"></ion-icon></button>
 		</div>
 		<div class="right">
 			<button color="white" outline ion-button round *ngIf="!isPlaying" (tap)="play()"><ion-icon name="ios-play-outline"></ion-icon></button>

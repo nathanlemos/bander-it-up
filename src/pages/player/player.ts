@@ -15,6 +15,7 @@ export class PlayerPage
 	isDebugging: boolean = false;
 	config : any;
 	episode : string;
+	isShowingTopBar: boolean = true;
 	isShowingOptions: boolean = false;
 	isPlaying: boolean = false;
 	currentIndex: number = 0;
@@ -24,11 +25,11 @@ export class PlayerPage
 	currentChoice: number = 0;
 	screenOptionsSetup: any = [];
 
-	constructor( public navCtrl: NavController, public platform: Platform, public http: Http, public ui: UiProvider)
+	constructor( public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public http: Http, public ui: UiProvider)
 	{
 		this.platform.ready().then( (r) =>
 		{
-			this.episode = 'episode';
+			this.episode = this.navParams.get('episode');
 
 			this.http.get('../../../assets/json/' +this.episode+ '.json').map(res => res.json()).subscribe( (res) =>
 			{
@@ -55,6 +56,7 @@ export class PlayerPage
 					that.ui.setMainVideo(that.config['scenes'][ that.currentIndex ]['url'], true);
 				}
 				that.hasFinishedEpisode = false;
+				that.showTopBar();
 			},
 			// On time updated
 			function(r)
@@ -161,9 +163,24 @@ export class PlayerPage
 		}
 	}
 
+	back()
+	{
+		this.navCtrl.pop();
+	}
+
 	goto( op )
 	{
 		this.currentChoice = op;
 		this.hasSelectedNext = true;
+	}
+
+	showTopBar()
+	{
+		this.isShowingTopBar = true;
+		setTimeout( () =>
+		{
+			console.log( 'Remove top bar' );
+			this.isShowingTopBar = false;
+		}, 3000);
 	}
 }
