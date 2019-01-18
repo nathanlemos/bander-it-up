@@ -6,9 +6,11 @@ That's a Ionic Framework based project to play interactive videos like Netflix's
 
 To create your version of Bandersnatch, clone this repo e write your story at the episode.json located at assets folder. You can create your own story, from scratch, but you need to refer the correct json at player.ts
 
+This project can be used to entertainment ideas, distance learning interactive projects and a lot of things. 
+
 ### Prerequisites
 
-You just need to know the basics of Ionic Framework and JSON markups. The JSON files are like the following:
+Anyone can use it. You just need to know the basics of Ionic Framework and JSON markups. The JSON files are like the following:
 
 ```
 {
