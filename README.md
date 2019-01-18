@@ -1,6 +1,6 @@
 # Bander-it-up!
 
-That's a Ionic Framework based project to play interactive videos like Netflix's Black Mirror: Bandersnatch.
+This is an Ionic Framework based project to play interactive videos like Netflix's Black Mirror: Bandersnatch.
 
 ## Getting Started
 
