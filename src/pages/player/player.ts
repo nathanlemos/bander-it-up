@@ -31,7 +31,7 @@ export class PlayerPage
 		{
 			this.episode = this.navParams.get('episode');
 
-			this.http.get('../../../assets/json/' +this.episode+ '.json').map(res => res.json()).subscribe( (res) =>
+			this.http.get('/assets/json/' +this.episode+ '.json').map(res => res.json()).subscribe( (res) =>
 			{
 				this.config = res;
 				this.setVideo();
