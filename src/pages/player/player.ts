@@ -83,6 +83,8 @@ export class PlayerPage
 			{
 				if( that.config['scenes'][ that.currentIndex ]['isFinal'] )
 				{
+					console.log( 'Caiu Final' );
+
 					that.hasFinishedEpisode = true
 					that.currentIndex = 0;
 					that.isPlaying = false;

@@ -1,8 +1,8 @@
 <ion-content>
 	<div id="player" [class.debugmode]="this.isDebugging" (tap)="showTopBar()" >
-		<video id="option2" [class.active]="this.ui.getCurrentScreen() == 2" [class.loading]="this.ui.getCurrentScreen() != 2"></video>
-		<video id="option0" [class.active]="this.ui.getCurrentScreen() == 0" [class.loading]="this.ui.getCurrentScreen() != 0"></video>
-		<video id="option1" [class.active]="this.ui.getCurrentScreen() == 1" [class.loading]="this.ui.getCurrentScreen() != 1"></video>
+		<video poster="/assets/imgs/logo.png" preload="auto" id="option2" [class.active]="this.ui.getCurrentScreen() == 2" [class.loading]="this.ui.getCurrentScreen() != 2"></video>
+		<video poster="/assets/imgs/logo.png" preload="auto" id="option0" [class.active]="this.ui.getCurrentScreen() == 0" [class.loading]="this.ui.getCurrentScreen() != 0"></video>
+		<video poster="/assets/imgs/logo.png" preload="auto" id="option1" [class.active]="this.ui.getCurrentScreen() == 1" [class.loading]="this.ui.getCurrentScreen() != 1"></video>
 	</div>
 
 
