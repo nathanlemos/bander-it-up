@@ -76,6 +76,7 @@ Anyone can use it. You just need to know the basics of Ionic Framework and JSON 
 
 Please, check the Android Demo available at [Google Play](https://play.google.com/store/apps/details?id=com.banderitup.demo)
 
+Also check the [How I Met Yout Mother's interctive episode](https://play.google.com/store/apps/details?id=com.banderitup.himyb) developed with this project
 ## Built With
 
 * [Ionic Framework](http://ionicframework.com/) - The web framework used
